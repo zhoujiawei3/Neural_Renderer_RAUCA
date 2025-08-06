@@ -48,7 +48,8 @@ def save_obj(filename, vertices, faces, textures=None, texture_size_out=16):
         filename_texture = filename[:-4] + '.png'
         material_name = 'material_1'
         texture_image, vertices_textures = create_texture_image(textures, texture_size_out)
-        imsave(filename_texture, texture_image)
+        image_uint8 = (texture_image * 255).astype('uint8')
+        imsave(filename_texture, image_uint8)
 
     faces = faces.detach().cpu().numpy()
 
